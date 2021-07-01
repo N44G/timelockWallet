@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import TF from "./contracts/TimeLockedWalletFactory.json";
-import NewBoxForm from './NewBoxForm';
+//import NewBoxForm from './NewBoxForm';
 import TW from './contracts/TimeLockedWallet.json'
 //import SimpleStorageContract from "./contracts/TimeLockedWalletFactory.json";
 import getWeb3 from "./getWeb3";
@@ -161,6 +161,7 @@ claimtokens= async ()=>{
     return (
       <div className="App">
         <h1>Time Locked Wallet</h1>
+  <h2>Create Wallet form</h2>
   <div className='walletsform'>
       <div>
 		<label htmlFor='wallet'>recepient address</label>
@@ -185,7 +186,7 @@ claimtokens= async ()=>{
 		</div>
 
       </div>
-      
+      <h2>Claim Ether or BNB</h2>
       <div className='claim'>
       <div>
 		<label htmlFor='tlwallet'>time locked wallet address</label>
@@ -198,10 +199,10 @@ claimtokens= async ()=>{
 		
 		</div>
 		<div>
-		<button onClick={this.claim}>Claim wallet</button>
+		<button onClick={this.claim}>Claim Ether/BNB</button>
 		</div>
       </div>
-  
+  <h2>claim tokens </h2>
 <div className='claimtokens'>
       <div>
 		<label htmlFor='tokenwallet'>time locked wallet</label>
