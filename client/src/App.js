@@ -144,10 +144,10 @@ claimtokens= async ()=>{
         info.map(i=>
            d=new Date(i[2]),
 
-          console.log(i,d)
+          console.log(i,d,'dddd')
           )
         this.setState({info});
-        console.log("info",this.state.info);
+        //console.log("info",this.state.info);
         //this.setState({  contract: instance });
     }
     
@@ -250,15 +250,15 @@ claimtokens= async ()=>{
             //console.log(this.state.info[item],Object.keys(item),'ggg'),
             <div>
               <li >creator {this.state.info[item][0]}</li>
-            <li >owner {this.state.info[item][1]}</li>
+            <li >Recepient {this.state.info[item][1]}</li>
             {/* { d=new Date(this.state.info[item][2]*1000)} */}
-            {console.log(new Date(this.state.info[item][2]*1000),'date')}
+            {/* {console.log(new Date(this.state.info[item][2]*1000),'date')} */}
             {/* <li >unlockdate {new Date(this.state.info[item][2]*1000)}</li> */}
-            <li >unlockdate {this.state.info[item][2]}</li>
+            <li >unlockdate <b>(time in utc epoch)</b> {this.state.info[item][2]}</li>
             {/* <li >unlockdate {d.toString()}</li> */}
             
-            <li >createdAt(time utc epoch) {this.state.info[item][3]}</li>
-            <li >balance(time in utc epoch) {this.state.info[item][4]/10**18}</li>
+            <li >createdAt<b>(time utc epoch)</b> {this.state.info[item][3]}</li>
+            <li >balance {this.state.info[item][4]/10**18}</li>
            
             </div>
             
