@@ -16,7 +16,9 @@ class App extends Component {
       tlwallet:null,
       tokenaddress:null,
       tokenwallet:null,
-      d:Date(),
+      d:Date(),d2:Date(),
+      unlocks:[],
+      createdAt:[]
       };
       this.handleChange = this.handleChange.bind(this)
       this.handleSubmit = this.handleSubmit.bind(this);
@@ -104,19 +106,6 @@ claimtokens= async ()=>{
 
   runExample = async () => {
     const { accounts, contract } = this.state;
-
-    // // Stores a given value, 5 by default.
-    // await contract.methods.set(6).send({ from: accounts[0] });
-
-    // // Get the value from the contract to prove it worked.
-    // const response = await contract.methods.get().call();
-
-    // // Update state with the result.
-    // this.setState({ storageValue: response });
-    
-    //const createnew = await contract.methods.newTimeLockedWallet('0xc7cf26Be1ec7840915F5d9c637E52E3573799911','1625083756').send({ from: accounts[0] });
-    //console.log(122,createnew);
-    
     const response = await contract.methods.getWallets(accounts[0]).call();
     
     this.setState({userWallets:response});
@@ -138,15 +127,20 @@ claimtokens= async ()=>{
         //console.log(TWs);
         
         //console.log('createdat',await TWs.methods.info().call());
-        let {info}=this.state;
+        let {info,unlocks,createdAt}=this.state;
+        console.log("createdat",createdAt);
         info.push(await TWs.methods.info().call());
         let d=new Date();
+        let d2=new Date();
         info.map(i=>
-           d=new Date(i[2]),
+          d=new Date(i[2]),
+          d2=new Date(i[3]),
 
-          console.log(i,d,'dddd')
+          unlocks.push(d.toString()),
+          createdAt.push(d2.toString()),
+          console.log(unlocks,createdAt,'dddd',i[3],i[2])
           )
-        this.setState({info});
+        this.setState({info,unlocks,createdAt});
         //console.log("info",this.state.info);
         //this.setState({  contract: instance });
     }
@@ -235,7 +229,7 @@ claimtokens= async ()=>{
 
 
   {/* <div>{this.state.unlock}unlock{this.state.wallet}'updateinfo'</div> */}
- <h3> All the wallets related to {this.state.accounts[0]}
+ <h3> Time locked wallets created by {this.state.accounts[0]}
 </h3>
       {/* <div>{this.state.userWallets[0],"userWallets"}</div> */}
       <ul>
@@ -254,10 +248,11 @@ claimtokens= async ()=>{
             {/* { d=new Date(this.state.info[item][2]*1000)} */}
             {/* {console.log(new Date(this.state.info[item][2]*1000),'date')} */}
             {/* <li >unlockdate {new Date(this.state.info[item][2]*1000)}</li> */}
-            <li >unlockdate <b>(time in utc epoch)</b> {this.state.info[item][2]}</li>
+            {/* <li >unlockdate <b>(time in utc epoch)</b> {this.state.info[item][2]}</li> */}
+            <li >unlockdate <b>(time in utc epoch)</b> {this.state.unlocks[item]}</li>
             {/* <li >unlockdate {d.toString()}</li> */}
             
-            <li >createdAt<b>(time utc epoch)</b> {this.state.info[item][3]}</li>
+            {/* <li >createdAt<b>(time utc epoch)</b> {this.state.createdAt[item]}</li> */}
             <li >balance {this.state.info[item][4]/10**18}</li>
            
             </div>
