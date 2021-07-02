@@ -9,7 +9,7 @@ Network Name: BSC Testnet
 New RPC URL: https://data-seed-prebsc-1-s1.binance.org:8545
 ChainID: 97
 Symbol: BNB
-Block Explorer URL: https://explorer.binance.org/smart-testnet
+Block Explorer URL: https://testnet.bscscan.com/
 Then press “Save”
 
 4. Use the mnemonic : ' video venue thing cargo system below gold illness wet length creek leg'
